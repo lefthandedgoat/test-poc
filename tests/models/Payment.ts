@@ -1,9 +1,13 @@
-export interface Payment {
-  id: number;
-  orderId: number;
-  amount: number;
-  paymentMethod: string;
-  paymentDate: string;
-  status: string;
-  transactionId: string;
-}
+import { z } from 'zod';
+
+export const PaymentSchema = z.object({
+  id: z.number(),
+  orderId: z.number(),
+  amount: z.number(),
+  paymentMethod: z.string(),
+  paymentDate: z.string(),
+  status: z.string(),
+  transactionId: z.string(),
+});
+
+export type Payment = z.infer<typeof PaymentSchema>;

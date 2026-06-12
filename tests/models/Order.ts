@@ -1,11 +1,14 @@
-import type { OrderItem } from './OrderItem';
+import { z } from 'zod';
+import { OrderItemSchema } from './OrderItem';
 
-export interface Order {
-  id: number;
-  customerId: number;
-  orderDate: string;
-  totalAmount: number;
-  status: string;
-  shippingAddressId: number;
-  items: OrderItem[];
-}
+export const OrderSchema = z.object({
+  id: z.number(),
+  customerId: z.number(),
+  orderDate: z.string(),
+  totalAmount: z.number(),
+  status: z.string(),
+  shippingAddressId: z.number(),
+  items: z.array(OrderItemSchema),
+});
+
+export type Order = z.infer<typeof OrderSchema>;
