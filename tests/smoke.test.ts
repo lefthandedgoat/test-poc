@@ -1,5 +1,5 @@
-import { smoke } from './helpers';
-import { HttpVerb } from './types';
+import { smoke } from './helpers/helpers';
+import { HttpVerb } from './helpers/types';
 import { CustomerSchema } from './models/Customer';
 import { ProductSchema } from './models/Product';
 import { OrderSchema } from './models/Order';
