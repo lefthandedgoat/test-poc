@@ -12,71 +12,71 @@ import { Review } from './models/Review';
 import { Supplier } from './models/Supplier';
 
 // ── Categories ────────────────────────────────────────────
-smoke('/api/categories',      HttpVerb.GET, list(Category));
-smoke('/api/categories/{id}', HttpVerb.GET, Category);
-smoke('/api/categories',      HttpVerb.POST, Category);
-smoke('/api/categories/{id}', HttpVerb.PUT,  Category);
-smoke('/api/categories/{id}', HttpVerb.DELETE, Category);
+smoke('/api/categories',      list(Category));
+smoke('/api/categories/{id}', Category);
+smoke('/api/categories',      Category, HttpVerb.POST);
+smoke('/api/categories/{id}', Category, HttpVerb.PUT);
+smoke('/api/categories/{id}', Category, HttpVerb.DELETE);
 
 // ── Customers ────────────────────────────────────────────
-smoke('/api/customers',      HttpVerb.GET, list(Customer));
-smoke('/api/customers/{id}', HttpVerb.GET, Customer);
-smoke('/api/customers',      HttpVerb.POST, Customer);
-smoke('/api/customers/{id}', HttpVerb.PUT,  Customer);
-smoke('/api/customers/{id}', HttpVerb.DELETE, Customer);
+smoke('/api/customers',      list(Customer));
+smoke('/api/customers/{id}', Customer);
+smoke('/api/customers',      Customer, HttpVerb.POST);
+smoke('/api/customers/{id}', Customer, HttpVerb.PUT);
+smoke('/api/customers/{id}', Customer, HttpVerb.DELETE);
 
 // ── Products ─────────────────────────────────────────────
-smoke('/api/products',      HttpVerb.GET, list(Product));
-smoke('/api/products/{id}', HttpVerb.GET, Product);
-smoke('/api/products',      HttpVerb.POST, Product);
-smoke('/api/products/{id}', HttpVerb.PUT,  Product);
-smoke('/api/products/{id}', HttpVerb.DELETE, Product);
+smoke('/api/products',      list(Product));
+smoke('/api/products/{id}', Product);
+smoke('/api/products',      Product, HttpVerb.POST);
+smoke('/api/products/{id}', Product, HttpVerb.PUT);
+smoke('/api/products/{id}', Product, HttpVerb.DELETE);
 
 // ── Orders ───────────────────────────────────────────────
-smoke('/api/orders',      HttpVerb.GET, list(Order));
-smoke('/api/orders/{id}', HttpVerb.GET, Order);
-smoke('/api/orders',      HttpVerb.POST, Order);
-smoke('/api/orders/{id}', HttpVerb.PUT,  Order);
-smoke('/api/orders/{id}', HttpVerb.DELETE, Order);
+smoke('/api/orders',      list(Order));
+smoke('/api/orders/{id}', Order);
+smoke('/api/orders',      Order, HttpVerb.POST);
+smoke('/api/orders/{id}', Order, HttpVerb.PUT);
+smoke('/api/orders/{id}', Order, HttpVerb.DELETE);
 
 // ── Order Items ──────────────────────────────────────────
-smoke('/api/orderitems',      HttpVerb.GET, list(OrderItem));
-smoke('/api/orderitems/{id}', HttpVerb.GET, OrderItem);
-smoke('/api/orderitems',      HttpVerb.POST, OrderItem);
-smoke('/api/orderitems/{id}', HttpVerb.PUT,  OrderItem);
-smoke('/api/orderitems/{id}', HttpVerb.DELETE, OrderItem);
+smoke('/api/orderitems',      list(OrderItem));
+smoke('/api/orderitems/{id}', OrderItem);
+smoke('/api/orderitems',      OrderItem, HttpVerb.POST);
+smoke('/api/orderitems/{id}', OrderItem, HttpVerb.PUT);
+smoke('/api/orderitems/{id}', OrderItem, HttpVerb.DELETE);
 
 // ── Payments ─────────────────────────────────────────────
-smoke('/api/payments',      HttpVerb.GET, list(Payment));
-smoke('/api/payments/{id}', HttpVerb.GET, Payment);
-smoke('/api/payments',      HttpVerb.POST, Payment);
-smoke('/api/payments/{id}', HttpVerb.PUT,  Payment);
-smoke('/api/payments/{id}', HttpVerb.DELETE, Payment);
+smoke('/api/payments',      list(Payment));
+smoke('/api/payments/{id}', Payment);
+smoke('/api/payments',      Payment, HttpVerb.POST);
+smoke('/api/payments/{id}', Payment, HttpVerb.PUT);
+smoke('/api/payments/{id}', Payment, HttpVerb.DELETE);
 
 // ── Shipping Addresses ───────────────────────────────────
-smoke('/api/shippingaddresses',      HttpVerb.GET, list(ShippingAddress));
-smoke('/api/shippingaddresses/{id}', HttpVerb.GET, ShippingAddress);
-smoke('/api/shippingaddresses',      HttpVerb.POST, ShippingAddress);
-smoke('/api/shippingaddresses/{id}', HttpVerb.PUT,  ShippingAddress);
-smoke('/api/shippingaddresses/{id}', HttpVerb.DELETE, ShippingAddress);
+smoke('/api/shippingaddresses',      list(ShippingAddress));
+smoke('/api/shippingaddresses/{id}', ShippingAddress);
+smoke('/api/shippingaddresses',      ShippingAddress, HttpVerb.POST);
+smoke('/api/shippingaddresses/{id}', ShippingAddress, HttpVerb.PUT);
+smoke('/api/shippingaddresses/{id}', ShippingAddress, HttpVerb.DELETE);
 
 // ── Shopping Carts ───────────────────────────────────────
-smoke('/api/shoppingcarts',      HttpVerb.GET, list(ShoppingCart));
-smoke('/api/shoppingcarts/{id}', HttpVerb.GET, ShoppingCart);
-smoke('/api/shoppingcarts',      HttpVerb.POST, ShoppingCart);
-smoke('/api/shoppingcarts/{id}', HttpVerb.PUT,  ShoppingCart);
-smoke('/api/shoppingcarts/{id}', HttpVerb.DELETE, ShoppingCart);
+smoke('/api/shoppingcarts',      list(ShoppingCart));
+smoke('/api/shoppingcarts/{id}', ShoppingCart);
+smoke('/api/shoppingcarts',      ShoppingCart, HttpVerb.POST);
+smoke('/api/shoppingcarts/{id}', ShoppingCart, HttpVerb.PUT);
+smoke('/api/shoppingcarts/{id}', ShoppingCart, HttpVerb.DELETE);
 
 // ── Reviews ──────────────────────────────────────────────
-smoke('/api/reviews',      HttpVerb.GET, list(Review));
-smoke('/api/reviews/{id}', HttpVerb.GET, Review);
-smoke('/api/reviews',      HttpVerb.POST, Review);
-smoke('/api/reviews/{id}', HttpVerb.PUT,  Review);
-smoke('/api/reviews/{id}', HttpVerb.DELETE, Review);
+smoke('/api/reviews',      list(Review));
+smoke('/api/reviews/{id}', Review);
+smoke('/api/reviews',      Review, HttpVerb.POST);
+smoke('/api/reviews/{id}', Review, HttpVerb.PUT);
+smoke('/api/reviews/{id}', Review, HttpVerb.DELETE);
 
 // ── Suppliers ────────────────────────────────────────────
-smoke('/api/suppliers',      HttpVerb.GET, list(Supplier));
-smoke('/api/suppliers/{id}', HttpVerb.GET, Supplier);
-smoke('/api/suppliers',      HttpVerb.POST, Supplier);
-smoke('/api/suppliers/{id}', HttpVerb.PUT,  Supplier);
-smoke('/api/suppliers/{id}', HttpVerb.DELETE, Supplier);
+smoke('/api/suppliers',      list(Supplier));
+smoke('/api/suppliers/{id}', Supplier);
+smoke('/api/suppliers',      Supplier, HttpVerb.POST);
+smoke('/api/suppliers/{id}', Supplier, HttpVerb.PUT);
+smoke('/api/suppliers/{id}', Supplier, HttpVerb.DELETE);

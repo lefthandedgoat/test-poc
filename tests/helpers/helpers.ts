@@ -63,6 +63,6 @@ export async function testEndpoint(uri: string, verb: HttpVerb, schema: z.ZodTyp
 // ---------------------------------------------------------------------------
 // Smoke-test helper: creates a single vitest test named "VERB - ENDPOINT"
 // ---------------------------------------------------------------------------
-export function smoke(uri: string, verb: HttpVerb, schema: z.ZodTypeAny) {
+export function smoke(uri: string, schema: z.ZodTypeAny, verb: HttpVerb = HttpVerb.GET) {
   test(`${verb} - ${uri}`, async () => await testEndpoint(uri, verb, schema));
 }
