@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/Product.cs
 import { z } from 'zod';
 
-export const ProductSchema = z.object({
+export const Product = z.object({
   id: z.number(),
   name: z.string(),
   description: z.string(),
@@ -13,4 +13,4 @@ export const ProductSchema = z.object({
   createdAt: z.string(),
 });
 
-export type Product = z.infer<typeof ProductSchema>;
+export type Product = z.infer<typeof Product>;

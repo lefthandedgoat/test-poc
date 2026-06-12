@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/OrderItem.cs
 import { z } from 'zod';
 
-export const OrderItemSchema = z.object({
+export const OrderItem = z.object({
   id: z.number(),
   orderId: z.number(),
   productId: z.number(),
@@ -12,4 +12,4 @@ export const OrderItemSchema = z.object({
   subTotal: z.number(),
 });
 
-export type OrderItem = z.infer<typeof OrderItemSchema>;
+export type OrderItem = z.infer<typeof OrderItem>;

@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/Payment.cs
 import { z } from 'zod';
 
-export const PaymentSchema = z.object({
+export const Payment = z.object({
   id: z.number(),
   orderId: z.number(),
   amount: z.number(),
@@ -12,4 +12,4 @@ export const PaymentSchema = z.object({
   transactionId: z.string(),
 });
 
-export type Payment = z.infer<typeof PaymentSchema>;
+export type Payment = z.infer<typeof Payment>;

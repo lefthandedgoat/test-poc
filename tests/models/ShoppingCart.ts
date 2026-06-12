@@ -2,21 +2,21 @@
 // Generated from ../../api/OnlineStore.Api/Models/ShoppingCart.cs
 import { z } from 'zod';
 
-export const CartItemSchema = z.object({
+export const CartItem = z.object({
   productId: z.number(),
   productName: z.string(),
   unitPrice: z.number(),
   quantity: z.number(),
 });
 
-export type CartItem = z.infer<typeof CartItemSchema>;
+export type CartItem = z.infer<typeof CartItem>;
 
-export const ShoppingCartSchema = z.object({
+export const ShoppingCart = z.object({
   id: z.number(),
   customerId: z.number(),
   createdAt: z.string(),
   expiresAt: z.string().nullable(),
-  items: z.array(CartItemSchema),
+  items: z.array(CartItem),
 });
 
-export type ShoppingCart = z.infer<typeof ShoppingCartSchema>;
+export type ShoppingCart = z.infer<typeof ShoppingCart>;

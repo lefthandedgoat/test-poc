@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/Review.cs
 import { z } from 'zod';
 
-export const ReviewSchema = z.object({
+export const Review = z.object({
   id: z.number(),
   productId: z.number(),
   customerId: z.number(),
@@ -12,4 +12,4 @@ export const ReviewSchema = z.object({
   createdAt: z.string(),
 });
 
-export type Review = z.infer<typeof ReviewSchema>;
+export type Review = z.infer<typeof Review>;

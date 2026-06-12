@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/ShippingAddress.cs
 import { z } from 'zod';
 
-export const ShippingAddressSchema = z.object({
+export const ShippingAddress = z.object({
   id: z.number(),
   customerId: z.number(),
   street: z.string(),
@@ -13,4 +13,4 @@ export const ShippingAddressSchema = z.object({
   isDefault: z.boolean(),
 });
 
-export type ShippingAddress = z.infer<typeof ShippingAddressSchema>;
+export type ShippingAddress = z.infer<typeof ShippingAddress>;

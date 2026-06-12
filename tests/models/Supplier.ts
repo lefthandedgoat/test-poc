@@ -2,7 +2,7 @@
 // Generated from ../../api/OnlineStore.Api/Models/Supplier.cs
 import { z } from 'zod';
 
-export const SupplierSchema = z.object({
+export const Supplier = z.object({
   id: z.number(),
   name: z.string(),
   contactName: z.string(),
@@ -12,4 +12,4 @@ export const SupplierSchema = z.object({
   createdAt: z.string(),
 });
 
-export type Supplier = z.infer<typeof SupplierSchema>;
+export type Supplier = z.infer<typeof Supplier>;
