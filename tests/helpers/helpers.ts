@@ -4,6 +4,14 @@ import { z } from 'zod';
 import { HttpVerb } from './types';
 
 // ---------------------------------------------------------------------------
+// Helper: wrap a schema to indicate the endpoint returns an array
+// ---------------------------------------------------------------------------
+/** Mark a schema as being for a list (array) endpoint */
+export function list<T extends z.ZodTypeAny>(schema: T): z.ZodArray<T> {
+  return z.array(schema);
+}
+
+// ---------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------
 export const BASE_URL = 'http://localhost:5050';
@@ -43,23 +51,18 @@ export async function request(uri: string, verb: HttpVerb): Promise<{ status: nu
 // ---------------------------------------------------------------------------
 // Helper: run status & contract-validation tests for a single endpoint
 // ---------------------------------------------------------------------------
-export async function testEndpoint(uri: string, verb: HttpVerb, schema?: z.ZodTypeAny) {
+export async function testEndpoint(uri: string, verb: HttpVerb, schema: z.ZodTypeAny) {
   const { status, body } = await request(uri, verb);
   expect(status).toBeGreaterThanOrEqual(200);
   expect(status).toBeLessThan(600);
-  if (schema && status >= 200 && status < 300) {
-    const isList = !uri.includes('{id}');
-    if (isList) {
-      z.array(schema).parse(body);
-    } else {
-      schema.parse(body);
-    }
+  if (status >= 200 && status < 300) {
+    schema.parse(body);
   }
 }
 
 // ---------------------------------------------------------------------------
 // Smoke-test helper: creates a single vitest test named "VERB - ENDPOINT"
 // ---------------------------------------------------------------------------
-export function smoke(uri: string, verb: HttpVerb, schema?: z.ZodTypeAny) {
+export function smoke(uri: string, verb: HttpVerb, schema: z.ZodTypeAny) {
   test(`${verb} - ${uri}`, async () => await testEndpoint(uri, verb, schema));
 }
