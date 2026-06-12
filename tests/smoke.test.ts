@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import ky from 'ky';
 import { z } from 'zod';
 import { HttpVerb } from './types';
+import { request, EndpointGroup } from './helpers';
 import { customerEndpoints } from './endpoints/customers';
 import { productEndpoints } from './endpoints/products';
 import { orderEndpoints } from './endpoints/orders';
@@ -24,51 +24,8 @@ import { ReviewSchema } from './models/Review';
 import { SupplierSchema } from './models/Supplier';
 
 // ---------------------------------------------------------------------------
-// Configuration
-// ---------------------------------------------------------------------------
-const BASE_URL = 'http://localhost:5050';
-
-/** Substitute `{id}` placeholders in a URI with a test value */
-function resolveUri(uri: string): string {
-  return uri.replace(/\{id\}/g, '1');
-}
-
-// ---------------------------------------------------------------------------
-// Helper: perform a request using ky, return the response & parsed body
-// ---------------------------------------------------------------------------
-async function request(uri: string, verb: HttpVerb): Promise<{ status: number; body: unknown }> {
-  const url = `${BASE_URL}${resolveUri(uri)}`;
-  const method = verb as string; // ky accepts GET | POST | PUT | PATCH | DELETE | ...
-
-  const response = await ky(url, {
-    method,
-    // Some servers may reject empty POST/PUT bodies – send an empty JSON object
-    ...(verb === HttpVerb.POST || verb === HttpVerb.PUT
-      ? { json: {} as Record<string, never> }
-      : {}),
-    // Prevent ky from throwing on non-2xx so we can assert status ourselves
-    throwHttpErrors: false,
-  });
-
-  let body: unknown;
-  try {
-    body = await response.json();
-  } catch {
-    body = null;
-  }
-
-  return { status: response.status, body };
-}
-
-// ---------------------------------------------------------------------------
 // Endpoint → schema mapping for contract validation on 2xx responses
 // ---------------------------------------------------------------------------
-type EndpointGroup = {
-  name: string;
-  endpoints: { uri: string; verb: HttpVerb }[];
-  schema: z.ZodTypeAny;
-};
-
 const endpointGroups: EndpointGroup[] = [
   { name: 'customers',         endpoints: customerEndpoints,         schema: CustomerSchema },
   { name: 'products',          endpoints: productEndpoints,          schema: ProductSchema },
