@@ -1,3 +1,5 @@
+// SYNCED - 2026-06-12
+// Generated from ../../api/OnlineStore.Api/Models/Order.cs
 import { z } from 'zod';
 import { OrderItemSchema } from './OrderItem';
 

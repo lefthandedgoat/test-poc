@@ -1,3 +1,5 @@
+// SYNCED - 2026-06-12
+// Generated from ../../api/OnlineStore.Api/Models/ShoppingCart.cs
 import { z } from 'zod';
 
 export const CartItemSchema = z.object({

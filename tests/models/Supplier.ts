@@ -1,3 +1,5 @@
+// SYNCED - 2026-06-12
+// Generated from ../../api/OnlineStore.Api/Models/Supplier.cs
 import { z } from 'zod';
 
 export const SupplierSchema = z.object({
