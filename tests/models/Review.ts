@@ -7,9 +7,9 @@ export const Review = z.object({
   productId: z.number(),
   customerId: z.number(),
   rating: z.number(),
-  title: z.string(),
-  comment: z.string(),
-  createdAt: z.string(),
+  title: z.string().optional(),
+  comment: z.string().optional(),
+  createdAt: z.string().optional(),
 });
 
 export type Review = z.infer<typeof Review>;

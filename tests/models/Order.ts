@@ -6,9 +6,9 @@ import { OrderItem } from './OrderItem';
 export const Order = z.object({
   id: z.number(),
   customerId: z.number(),
-  orderDate: z.string(),
+  orderDate: z.string().optional(),
   totalAmount: z.number(),
-  status: z.string(),
+  status: z.string().optional(),
   shippingAddressId: z.number(),
   items: z.array(OrderItem),
 });

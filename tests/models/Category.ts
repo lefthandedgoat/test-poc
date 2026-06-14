@@ -4,9 +4,9 @@ import { z } from 'zod';
 
 export const Category = z.object({
   id: z.number(),
-  name: z.string(),
-  description: z.string(),
-  parentCategoryId: z.number().nullable(),
+  name: z.string().optional(),
+  description: z.string().optional(),
+  parentCategoryId: z.number().optional().nullable(),
 });
 
 export type Category = z.infer<typeof Category>;

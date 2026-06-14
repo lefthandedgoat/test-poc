@@ -4,12 +4,12 @@ import { z } from 'zod';
 
 export const Supplier = z.object({
   id: z.number(),
-  name: z.string(),
-  contactName: z.string(),
-  contactEmail: z.string(),
-  contactPhone: z.string(),
-  address: z.string(),
-  createdAt: z.string(),
+  name: z.string().optional(),
+  contactName: z.string().optional(),
+  contactEmail: z.string().optional(),
+  contactPhone: z.string().optional(),
+  address: z.string().optional(),
+  createdAt: z.string().optional(),
 });
 
 export type Supplier = z.infer<typeof Supplier>;

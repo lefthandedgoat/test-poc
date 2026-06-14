@@ -4,11 +4,11 @@ import { z } from 'zod';
 
 export const Customer = z.object({
   id: z.number(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  phone: z.string(),
-  createdAt: z.string(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  createdAt: z.string().optional(),
 });
 
 export type Customer = z.infer<typeof Customer>;

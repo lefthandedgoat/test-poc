@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 export const CartItem = z.object({
   productId: z.number(),
-  productName: z.string(),
+  productName: z.string().optional(),
   unitPrice: z.number(),
   quantity: z.number(),
 });
@@ -14,8 +14,8 @@ export type CartItem = z.infer<typeof CartItem>;
 export const ShoppingCart = z.object({
   id: z.number(),
   customerId: z.number(),
-  createdAt: z.string(),
-  expiresAt: z.string().nullable(),
+  createdAt: z.string().optional(),
+  expiresAt: z.string().optional().nullable(),
   items: z.array(CartItem),
 });
 

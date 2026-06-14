@@ -2,6 +2,15 @@ import ky from 'ky';
 import { test, expect } from 'vitest';
 import { z } from 'zod';
 import { HttpVerb } from './types';
+import { Data, Category, Product, Review } from '../models';
+import { test_Customer, test_OrderItem, test_Payment, test_Product, test_Review, test_ShippingAddress, test_ShoppingCart } from '../test_Data/all';
+
+export type Test = {
+  description: string;
+  step: 'sign up' | 'shop' | 'checked out' | 'review';
+  customize?: Data[];
+  test: (b: Data) => void;
+}
 
 // ---------------------------------------------------------------------------
 // Helper: wrap a schema to indicate the endpoint returns an array
@@ -65,4 +74,33 @@ export async function testEndpoint(uri: string, verb: HttpVerb, schema: z.ZodTyp
 // ---------------------------------------------------------------------------
 export function smoke(uri: string, schema: z.ZodTypeAny, verb: HttpVerb = HttpVerb.GET) {
   test(`${verb} - ${uri}`, async () => await testEndpoint(uri, verb, schema));
+}
+
+export function workflow(testt: Test) {
+  let customize = testt.customize && testt.customize.length ? testt.customize : [{}];
+  customize.forEach((data, i) => {
+    switch (testt.step) {
+      case 'sign up': {
+        data = {... data, ...test_Customer(data)()};
+      }
+      case 'checked out': {
+        data = {... data, ...test_Product(data)()};
+        data = {... data, ...test_OrderItem(data)()};
+        data = {... data, ...test_Payment(data)()};
+        data = {... data, ...test_ShoppingCart(data)()};
+        data = {... data, ...test_ShippingAddress(data)()};
+      }
+      case 'review': {
+        data = {... data, ...test_Review(data)()};
+      }
+      case 'shop': {
+        data = {... data, ...test_Product(data)()};
+        data = {... data, ...test_ShoppingCart(data)()};
+      }
+    }
+
+    test(`${testt.description} - ${i + 1}`, async () => {
+      await testt.test(data);
+    });  
+  });
 }

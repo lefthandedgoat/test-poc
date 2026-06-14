@@ -5,11 +5,11 @@ import { z } from 'zod';
 export const ShippingAddress = z.object({
   id: z.number(),
   customerId: z.number(),
-  street: z.string(),
-  city: z.string(),
-  state: z.string(),
-  zipCode: z.string(),
-  country: z.string(),
+  street: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  zipCode: z.string().optional(),
+  country: z.string().optional(),
   isDefault: z.boolean(),
 });
 

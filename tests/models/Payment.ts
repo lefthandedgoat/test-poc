@@ -6,10 +6,10 @@ export const Payment = z.object({
   id: z.number(),
   orderId: z.number(),
   amount: z.number(),
-  paymentMethod: z.string(),
-  paymentDate: z.string(),
-  status: z.string(),
-  transactionId: z.string(),
+  paymentMethod: z.string().optional(),
+  paymentDate: z.string().optional(),
+  status: z.string().optional(),
+  transactionId: z.string().optional(),
 });
 
 export type Payment = z.infer<typeof Payment>;

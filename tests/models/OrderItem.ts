@@ -6,7 +6,7 @@ export const OrderItem = z.object({
   id: z.number(),
   orderId: z.number(),
   productId: z.number(),
-  productName: z.string(),
+  productName: z.string().optional(),
   quantity: z.number(),
   unitPrice: z.number(),
   subTotal: z.number(),
