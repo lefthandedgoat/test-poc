@@ -1,15 +1,6 @@
 import { smoke, list } from './helpers/helpers';
 import { HttpVerb } from './helpers/types';
-import { Customer } from './models/Customer';
-import { Product } from './models/Product';
-import { Order } from './models/Order';
-import { OrderItem } from './models/OrderItem';
-import { Category } from './models/Category';
-import { Payment } from './models/Payment';
-import { ShippingAddress } from './models/ShippingAddress';
-import { ShoppingCart } from './models/ShoppingCart';
-import { Review } from './models/Review';
-import { Supplier } from './models/Supplier';
+import { Category, Customer, Product, Order, OrderItem, Payment, ShippingAddress, ShoppingCart, Review, Supplier } from './models';
 
 // ── Categories ────────────────────────────────────────────
 smoke('/api/categories',      list(Category));
