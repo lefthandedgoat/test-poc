@@ -1,15 +1,16 @@
 import ky from 'ky';
 import { test, expect } from 'vitest';
-import { z } from 'zod';
+import { custom, z } from 'zod';
 import { HttpVerb } from './types';
-import { Data, Category, Product, Review } from '../models';
+import { Data } from '../models';
 import { test_Customer, test_OrderItem, test_Payment, test_Product, test_Review, test_ShippingAddress, test_ShoppingCart } from '../test_Data/all';
 
-export type Test = {
-  description: string;
-  step: 'sign up' | 'shop' | 'checked out' | 'review';
-  customize?: Data[];
-  test: (b: Data) => void;
+export function eq<T>(a: T, b: T) {
+  expect(a).toEqual(b);
+}
+
+export function exist<T>(a: T) {
+  expect(a).not.null.not.undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -76,10 +77,12 @@ export function smoke(uri: string, schema: z.ZodTypeAny, verb: HttpVerb = HttpVe
   test(`${verb} - ${uri}`, async () => await testEndpoint(uri, verb, schema));
 }
 
-export function workflow(testt: Test) {
-  let customize = testt.customize && testt.customize.length ? testt.customize : [{}];
+export type steps = 'sign up' | 'shop' | 'checked out' | 'review';
+
+export function workflow(step: steps, description: string, customize: Data[] = [{}], func: (b: Data) => void) {
   customize.forEach((data, i) => {
-    switch (testt.step) {
+    const customization = { ...data };
+    switch (step) {
       case 'sign up': {
         data = {... data, ...test_Customer(data)()};
       }
@@ -99,8 +102,7 @@ export function workflow(testt: Test) {
       }
     }
 
-    test(`${testt.description} - ${i + 1}`, async () => {
-      await testt.test(data);
-    });  
+    const tag = Object.keys(customization).length === 0 ? `${i + 1}` : `${JSON.stringify(customization)}`;
+    test(`${description} - ${tag}`, async () => await func(data));  
   });
 }
